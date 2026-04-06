@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Julian Hernandez | Home Value Estimate</title>
+  <style>
+    :root {
+      --bg: #0f0f10;
+      --panel: #17181b;
+      --panel-2: #1e2024;
+      --gold: #d4af62;
+      --gold-2: #f0d38d;
+      --text: #f5f5f5;
+      --muted: #b9bcc3;
+      --border: rgba(212, 175, 98, 0.28);
+      --success: #dff6dd;
+      --success-text: #183b16;
+      --shadow: 0 14px 40px rgba(0,0,0,.38);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(212,175,98,.08), transparent 28%),
+        linear-gradient(180deg, #121315 0%, #0b0b0c 100%);
+      min-height: 100vh;
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 28px;
+      align-items: center;
+      min-height: calc(100vh - 48px);
+    }
+
+    .brand {
+      width: min(320px, 72vw);
+      margin-bottom: 28px;
+      display: block;
+      filter: drop-shadow(0 8px 20px rgba(0,0,0,.25));
+    }
+
+    .eyebrow {
+      color: var(--gold-2);
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-size: .78rem;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 4.35rem);
+      line-height: .98;
+      margin: 0 0 16px;
+      max-width: 700px;
+    }
+
+    .accent { color: var(--gold-2); }
+
+    .sub {
+      color: var(--muted);
+      font-size: clamp(1rem, 1.7vw, 1.15rem);
+      line-height: 1.6;
+      max-width: 650px;
+      margin-bottom: 28px;
+    }
+
+    .bullets {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 26px;
+    }
+
+    .pill {
+      border: 1px solid var(--border);
+      background: rgba(212,175,98,.06);
+      color: var(--text);
+      padding: 11px 14px;
+      border-radius: 999px;
+      font-size: .94rem;
+    }
+
+    .agent {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .agent strong { color: var(--text); }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: var(--shadow);
+      border-radius: 24px;
+      padding: 28px;
+      backdrop-filter: blur(10px);
+    }
+
+    .form-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: "";
+      position: absolute;
+      inset: -40% auto auto -10%;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(212,175,98,.16), transparent 66%);
+      pointer-events: none;
+    }
+
+    .form-title {
+      margin: 0 0 8px;
+      font-size: 1.65rem;
+    }
+
+    .form-sub {
+      color: var(--muted);
+      margin: 0 0 22px;
+      line-height: 1.55;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    label {
+      font-size: .9rem;
+      color: var(--gold-2);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 15px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      outline: none;
+      font-size: 1rem;
+    }
+
+    input::placeholder, textarea::placeholder { color: #9ea3ad; }
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(240,211,141,.8);
+      box-shadow: 0 0 0 4px rgba(212,175,98,.12);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .btn {
+      border: 0;
+      padding: 16px 18px;
+      border-radius: 14px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1rem;
+      transition: transform .15s ease, box-shadow .2s ease, opacity .2s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(180deg, var(--gold-2), var(--gold));
+      color: #18140b;
+      box-shadow: 0 10px 24px rgba(212,175,98,.22);
+    }
+
+    .btn-primary:hover { transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .fine {
+      color: var(--muted);
+      font-size: .86rem;
+      line-height: 1.5;
+      margin-top: 4px;
+    }
+
+    .trust {
+      margin-top: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .trust-item {
+      color: var(--muted);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: .95rem;
+      line-height: 1.5;
+    }
+
+    .check {
+      color: var(--gold-2);
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .success {
+      display: none;
+      background: var(--success);
+      color: var(--success-text);
+      border-radius: 18px;
+      padding: 20px;
+      margin-top: 18px;
+      line-height: 1.55;
+    }
+
+    .success h3 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+    }
+
+    .contact-strip {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .contact-chip {
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,.1);
+      background: rgba(255,255,255,.03);
+      border-radius: 999px;
+      padding: 10px 14px;
+      font-size: .94rem;
+    }
+
+    footer {
+      padding: 24px 0 10px;
+      color: #8d929c;
+      font-size: .88rem;
+    }
+
+    @media (max-width: 920px) {
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 26px;
+        padding-bottom: 18px;
+      }
+      .grid-2 { grid-template-columns: 1fr; }
+      .wrap { padding: 16px; }
+      .card { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div>
+        <img src="logo.png" alt="Julian Hernandez Real Estate Investments logo" class="brand" />
+        <div class="eyebrow">Sacramento Area Real Estate</div>
+        <h1>See what your home <span class="accent">could sell for</span> in today’s market.</h1>
+        <p class="sub">
+          Get a fast home value estimate request started in under a minute. Submit your property details and Julian will follow up with a local market review based on recent nearby sales.
+        </p>
+        <div class="bullets">
+          <div class="pill">No obligation</div>
+          <div class="pill">Local market insight</div>
+          <div class="pill">Custom review available</div>
+        </div>
+        <div class="agent">
+          <div><strong>Julian Hernandez</strong><br>DRE License #02047629</div>
+          <div>Call or text: <strong>916-879-9300</strong></div>
+        </div>
+      </div>
+
+      <div class="card form-card">
+        <h2 class="form-title">Get your home value estimate</h2>
+        <p class="form-sub">
+          Fill this out and you’ll have a value request in. This template currently saves the lead locally in the browser and opens a ready-to-send email. Hook it to your CRM, Zapier, Tally, Jotform, or website form handler to make it fully live.
+        </p>
+
+        <form id="leadForm">
+          <div>
+            <label for="address">Property address</label>
+            <input id="address" name="address" type="text" placeholder="123 Main St, Sacramento, CA" required />
+          </div>
+          <div class="grid-2">
+            <div>
+              <label for="name">Full name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+            </div>
+            <div>
+              <label for="phone">Phone number</label>
+              <input id="phone" name="phone" type="tel" placeholder="(916) 555-1234" required />
+            </div>
+          </div>
+          <div>
+            <label for="email">Email address</label>
+            <input id="email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div>
+            <label for="timeline">Are you thinking of selling?</label>
+            <select id="timeline" name="timeline">
+              <option value="Just curious">Just curious</option>
+              <option value="Next 12 months">Within 12 months</option>
+              <option value="Next 6 months">Within 6 months</option>
+              <option value="ASAP">Soon / ASAP</option>
+            </select>
+          </div>
+          <div>
+            <label for="notes">Anything else Julian should know? (optional)</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Upgrades, condition, rental status, etc."></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Get My Estimate</button>
+          <div class="fine">By submitting, you agree to be contacted about your home value request.</div>
+        </form>
+
+        <div class="success" id="successBox">
+          <h3>Request received.</h3>
+          <div id="successText"></div>
+        </div>
+
+        <div class="trust">
+          <div class="trust-item"><span class="check">✓</span><span>Good for a QR code on your metal card.</span></div>
+          <div class="trust-item"><span class="check">✓</span><span>Fast to customize and publish on nearly any website host.</span></div>
+          <div class="trust-item"><span class="check">✓</span><span>Ready for form integrations when you want actual lead capture.</span></div>
+        </div>
+
+        <div class="contact-strip">
+          <a class="contact-chip" href="tel:9168799300">Call 916-879-9300</a>
+          <a class="contact-chip" href="sms:9168799300">Text Julian</a>
+          <a class="contact-chip" href="julian-hernandez.vcf" download>Save Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Template prepared for Julian Hernandez. Replace the form action or JavaScript submission handler with your CRM, website, or automation stack when you’re ready to make it fully live.
+    </footer>
+  </div>
+
+  <script>
+    const form = document.getElementById('leadForm');
+    const successBox = document.getElementById('successBox');
+    const successText = document.getElementById('successText');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const data = {
+        address: form.address.value.trim(),
+        name: form.name.value.trim(),
+        phone: form.phone.value.trim(),
+        email: form.email.value.trim(),
+        timeline: form.timeline.value,
+        notes: form.notes.value.trim(),
+        submittedAt: new Date().toISOString()
+      };
+
+      const existing = JSON.parse(localStorage.getItem('jh_home_value_leads') || '[]');
+      existing.push(data);
+      localStorage.setItem('jh_home_value_leads', JSON.stringify(existing));
+
+      const subject = encodeURIComponent('Home Value Request - ' + data.address);
+      const body = encodeURIComponent(
+        'New home value lead submitted.\n\n' +
+        'Address: ' + data.address + '\n' +
+        'Name: ' + data.name + '\n' +
+        'Phone: ' + data.phone + '\n' +
+        'Email: ' + data.email + '\n' +
+        'Timeline: ' + data.timeline + '\n' +
+        'Notes: ' + (data.notes || 'None') + '\n\n' +
+        'Submitted at: ' + data.submittedAt
+      );
+
+      successText.innerHTML = 'Thanks, <strong>' + escapeHtml(data.name) + '</strong>. Your request for <strong>' + escapeHtml(data.address) + '</strong> is in. A quick follow-up can be sent to <strong>' + escapeHtml(data.phone) + '</strong> or <strong>' + escapeHtml(data.email) + '</strong>.';
+      successBox.style.display = 'block';
+      form.reset();
+      successBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      setTimeout(() => {
+        window.location.href = 'mailto:94jah11@gmail.com?subject=' + subject + '&body=' + body;
+      }, 600);
+    });
+
+    function escapeHtml(str) {
+      return str.replace(/[&<>"]+/g, function (tag) {
+        const chars = {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;'
+        };
+        return chars[tag] || tag;
+      });
+    }
+  </script>
+</body>
+</html>
