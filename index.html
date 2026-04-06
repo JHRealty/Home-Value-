@@ -9,8 +9,8 @@
 body{
   margin:0;
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto;
+  background:#0b0d12;
   color:#fff;
-  background:#0d0f14;
 }
 
 .wrap{
@@ -19,44 +19,94 @@ body{
   padding:24px;
 }
 
+/* LOGO */
+.logo{
+  width:220px;
+  display:block;
+  margin:0 auto 20px;
+}
+
+/* HERO */
 h1{
   font-size:42px;
+  text-align:center;
   line-height:1.1;
 }
 
-.accent{color:#d4af62}
+.accent{color:#d4af62;}
 
 .sub{
-  color:#bbb;
-  margin-top:10px;
+  text-align:center;
+  color:#aaa;
+  margin-top:12px;
+  max-width:600px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
+/* CARDS */
 .section{
-  margin-top:30px;
+  margin-top:40px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:16px;
 }
 
 .card{
   background:#141922;
   padding:20px;
   border-radius:16px;
-  margin-top:20px;
+  border:1px solid rgba(212,175,98,.15);
+}
+
+.card h3{
+  margin-top:0;
+  color:#d4af62;
+}
+
+/* FORM */
+.form{
+  margin-top:40px;
+  background:#141922;
+  padding:25px;
+  border-radius:16px;
 }
 
 input,textarea,select{
   width:100%;
-  padding:12px;
+  padding:14px;
   margin:10px 0;
   border-radius:10px;
   border:none;
+  background:#1a202a;
+  color:#fff;
 }
 
 button{
   width:100%;
-  padding:14px;
+  padding:16px;
   background:#d4af62;
   border:none;
-  border-radius:10px;
+  border-radius:12px;
   font-weight:bold;
+  font-size:16px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+.footer{
+  margin-top:40px;
+  text-align:center;
+  color:#aaa;
+}
+
+@media(max-width:800px){
+  .grid{
+    grid-template-columns:1fr;
+  }
 }
 </style>
 </head>
@@ -64,32 +114,40 @@ button{
 <body>
 <div class="wrap">
 
-<h1>Helping buyers, sellers, and <span class="accent">fixer opportunities</span></h1>
+<!-- LOGO -->
+<img src="logo.png" class="logo">
+
+<!-- HERO -->
+<h1>
+Helping buyers, sellers, and <span class="accent">fixer opportunities</span>
+</h1>
 
 <p class="sub">
-I work with buyers, sellers, and properties that may not qualify for traditional financing.
+I help clients buy, sell, and navigate properties that may not qualify for traditional financing.
 </p>
 
-<div class="section">
+<!-- SERVICES -->
+<div class="section grid">
 
 <div class="card">
 <h3>Buyers</h3>
-<p>Find your next home or investment with a real strategy.</p>
+<p>Find your next home or investment with a strategy that makes sense.</p>
 </div>
 
 <div class="card">
 <h3>Sellers</h3>
-<p>Get a realistic plan and understand your options.</p>
+<p>Get a realistic value and a plan to maximize your outcome.</p>
 </div>
 
 <div class="card">
 <h3>Fixer Properties</h3>
-<p>I help with properties that need work or don’t qualify for financing.</p>
+<p>Specializing in properties that need work or can’t be financed traditionally.</p>
 </div>
 
 </div>
 
-<div class="section card">
+<!-- FORM -->
+<div class="form">
 
 <h2>Start the conversation</h2>
 
@@ -98,7 +156,7 @@ I work with buyers, sellers, and properties that may not qualify for traditional
 <option>Buying a home</option>
 <option>Selling a home</option>
 <option>Fixer property</option>
-<option>Investment</option>
+<option>Investment property</option>
 </select>
 
 <input placeholder="Full name">
@@ -112,10 +170,12 @@ I work with buyers, sellers, and properties that may not qualify for traditional
 
 </div>
 
-<p class="sub">
-Call or text: <strong>916-879-9300</strong><br>
-DRE License #02047629
-</p>
+<!-- FOOTER -->
+<div class="footer">
+<p>Julian Hernandez | REALTOR®</p>
+<p>DRE License #02047629</p>
+<p>916-879-9300</p>
+</div>
 
 </div>
 </body>
